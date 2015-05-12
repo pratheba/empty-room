@@ -1,7 +1,6 @@
 /* Include file for the R3 point light class */
 
 
-
 /* Initialization functions */
 
 int R3InitAreaLight();

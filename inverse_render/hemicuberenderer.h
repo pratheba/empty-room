@@ -1,6 +1,7 @@
 #ifndef _HEMICUBE_RENDERER_H
 #define _HEMICUBE_RENDERER_H
-#include <GL/gl.h>
+
+#include "opengl_compat.h"
 
 #include "colorhelper.h"
 #include "material.h"

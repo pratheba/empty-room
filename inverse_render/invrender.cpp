@@ -1,5 +1,4 @@
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "opengl_compat.h"
 #include <pcl/io/io.h>
 #include <pcl/io/vtk_lib_io.h>
 #include <pcl/point_types.h>
@@ -29,15 +28,16 @@ using namespace pcl;
 
 int main(int argc, char* argv[]) {
     glutInit(&argc, argv);
+     #ifdef __APPLE__
+    glutInitDisplayMode(GLUT_3_2_CORE_PROFILE | GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+    #else
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+    #endif
     glutInitWindowSize(1,1);
     glutCreateWindow("");
     glutHideWindow();
-    GLenum err = glewInit();
-    if (err != GLEW_OK) {
-        cerr << "Error:" << glewGetErrorString(err) << endl;
-        return 1;
-    }
+
+    if (!openglInit()) return 1;
     if (!parseargs(argc, argv)) return 1;
     PolygonMesh::Ptr mesh(new PolygonMesh());
     cout << "Loading mesh geometry...." << endl;
@@ -53,7 +53,8 @@ int main(int argc, char* argv[]) {
             cloud->points[i].z = tmp[i].z;
         }
     }
-    PlaneOrientationFinder of(mesh, resolution/2);
+    //PlaneOrientationFinder of(mesh, resolution/2);
+    NormalOrientationFinder of(mesh);
     of.computeNormals(ccw);
     Mesh m(mesh,true);
     cout << "Done loading mesh geometry" << endl;

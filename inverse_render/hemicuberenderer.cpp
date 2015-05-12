@@ -1,8 +1,12 @@
-#include <GL/glew.h>
+#include "opengl_compat.h"
 
 #include "hemicuberenderer.h"
 #include <iostream>
 #include <stdexcept>
+
+#ifdef __APPLE__
+#include <random>
+#endif
 
 using namespace std;
 
@@ -50,9 +54,13 @@ void HemicubeRenderer::computeHemicubeFF() {
     }
 }
 bool HemicubeRenderer::setupRasterizer() {
+    #ifdef __APPLE__
+    glClampColor(GL_CLAMP_READ_COLOR, GL_FALSE);
+    #else
     glClampColor(GL_CLAMP_READ_COLOR, GL_FALSE);
     glClampColor(GL_CLAMP_VERTEX_COLOR, GL_FALSE);
     glClampColor(GL_CLAMP_FRAGMENT_COLOR, GL_FALSE);
+    #endif
 
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);

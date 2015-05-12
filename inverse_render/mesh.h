@@ -1,7 +1,7 @@
 #ifndef _MESH_H
 #define _MESH_H
 
-#include <GL/gl.h>
+#include "opengl_compat.h"
 #include "RNBasics/RNBasics.h"
 #include "R3Shapes/R3Shapes.h"
 #include "material.h"

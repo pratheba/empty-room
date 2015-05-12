@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 const float DEPTHTOLERANCE = 0.6;

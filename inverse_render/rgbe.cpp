@@ -4,7 +4,12 @@
 
 #include "rgbe.h"
 #include <math.h>
-#include <malloc.h>
+#ifdef __APPLE__
+ #include <malloc/malloc.h>
+ #include <stdlib.h>
+#else
+ #include <malloc.h>
+#endif
 #include <string.h>
 #include <ctype.h>
 
