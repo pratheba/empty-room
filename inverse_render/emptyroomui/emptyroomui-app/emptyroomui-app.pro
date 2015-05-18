@@ -45,6 +45,7 @@ unix:!macx {
 }
 INCLUDEPATH += $$PWD/../../
 INCLUDEPATH += $$GAPS_DIR
+INCLUDEPATH += $$PWD/ ../
 DEPENDPATH += $$PWD/../../
 
 unix: PRE_TARGETDEPS += $$INVRENDER_DIR/libdatamanager.a $$INVRENDER_DIR/libroommodel.a $$INVRENDER_DIR/librendering.a ../QGLViewer/libQGLViewer.a

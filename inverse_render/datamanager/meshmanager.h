@@ -5,7 +5,7 @@
 #include "material.h"
 #include <string>
 #include <vector>
-#include <Eigen/Eigen>
+#include <eigen3/Eigen/Eigen>
 
 #include <boost/interprocess/mapped_region.hpp>
 #include <boost/interprocess/sync/interprocess_sharable_mutex.hpp>
