@@ -40,9 +40,19 @@ target_link_libraries(rendering datamanager roommodel
 add_executable(reprojectapp reprojectapp.cpp invrenderapp.cpp invrenderapp.h
     reproject.cpp reproject.h clusterlights.cpp clusterlights.h)
 target_link_libraries(reprojectapp ${PCL_LIBRARIES} datamanager)
-add_executable(labelimageapp labelimageapp.cpp invrenderapp.cpp invrenderapp.h
-    material.h)
+add_executable(labelimageapp labelimageapp.cpp invrenderapp.cpp invrenderapp.h)
 target_link_libraries(labelimageapp ${PCL_LIBRARIES} ${GLUT_LIBRARY} datamanager rendering)
+add_executable(edgeimageapp edgeimageapp.cpp
+    orientededgefilter.cpp orientededgefilter.h
+    invrenderapp.cpp invrenderapp.h)
+target_link_libraries(edgeimageapp ${PCL_LIBRARIES} ${OpenCV_LIBS} datamanager)
+add_executable(linefindapp linefindapp.cpp
+    wall_finder.h wall_finder.cpp
+    linefinder.cpp linefinder.h
+    shortestpath.h shortestpath.cpp orientededgefilter.cpp orientededgefilter.h
+    invrenderapp.cpp invrenderapp.h)
+target_link_libraries(linefindapp ${PCL_LIBRARIES} ${OpenCV_LIBS} datamanager
+    roommodel)
 add_executable(wallfindapp wallfindapp.cpp invrenderapp.cpp invrenderapp.h
     orientation_finder.h orientation_finder.cpp wall_finder.h wall_finder.cpp
     shortestpath.h shortestpath.cpp)
@@ -50,10 +60,12 @@ target_link_libraries(wallfindapp ${PCL_LIBRARIES} datamanager roommodel)
 
 add_executable(invrender invrender.cpp
     reproject.h reproject.cpp
-    wall_finder.h wall_finder.cpp material.h
+    wall_finder.h wall_finder.cpp
     orientation_finder.cpp orientation_finder.h
     shortestpath.cpp shortestpath.h
     Simplify.h eigen_nnls.h
+    linefinder.cpp linefinder.h
+    orientededgefilter.cpp orientededgefilter.h
     solver.cpp solvetexture.cpp solver.h clusterlights.cpp clusterlights.h
     display.cpp display.h parse_args.cpp parse_args.h rerender.cpp rerender.h)
 target_link_libraries(invrender ${PCL_LIBRARIES} ${OpenCV_LIBS}

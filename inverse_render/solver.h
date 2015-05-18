@@ -4,9 +4,8 @@
 
 #include "R3Shapes/R3Shapes.h"
 #include "datamanager/imagemanager.h"
-#include "hemicuberenderer.h"
-#include "material.h"
 #include "datamanager/meshmanager.h"
+#include "hemicuberenderer.h"
 
 class InverseRender {
     public:
@@ -42,6 +41,7 @@ class InverseRender {
 
         void setNumRansacIters(int n) { numRansacIters = n; }
         void setMaxPercentErr(double d) { maxPercentErr = d; }
+        RenderManager* getRenderManager() { return rm; }
     private:
         // Inverse Rendering helpers
         bool calculateWallMaterialFromUnlit(std::vector<SampleData>& data);
